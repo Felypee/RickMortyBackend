@@ -1,0 +1,32 @@
+service: awsmorty
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  addCharacters:
+    handler: addCharacters.addCharacters
+    events:
+      - httpApi:
+          path: /addCharacters
+          method: get
+  getCharacters:
+    handler: getCharacters.getCharacters
+    events:
+      - httpApi:
+          path: /getCharacters
+          method: get
+  updateCharacter:
+    handler: updateCharacter.updateCharacter
+    events:
+      - httpApi:
+          path: /updateCharacter
+          method: put
+  deleteCharacter:
+    handler: deleteCharacter.deleteCharacter
+    events:
+      - httpApi:
+          path: /deleteCharacter
+          method: delete
