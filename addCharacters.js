@@ -2,6 +2,10 @@ import { Redis } from "@upstash/redis";
 import https from "https";
 import { stringify } from "querystring";
 
+const redis = new Redis({
+  url: process.env.CLIENT_REDIS,
+  token: process.env.CLIENT_SECRET,
+});
 export async function addCharacters(event) {
   let characters;
   try {
@@ -15,10 +19,6 @@ export async function addCharacters(event) {
   }
 
   try {
-    const redis = new Redis({
-      url: "https://relieved-crawdad-55843.upstash.io",
-      token: "AdojAAIncDFmM2MyMTc1OGFhZDg0OTE0YWQ0MzQ1NGJiZmY2OTAxOXAxNTU4NDM",
-    });
     for (let i = 0; i < characters.length; i++) {
       const character = characters[i];
       await redis.set(character.id, character);

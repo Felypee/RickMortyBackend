@@ -1,9 +1,14 @@
 service: awsmorty
 frameworkVersion: "3"
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs18.x
+  environment:
+    CLIENT_REDIS: ${env:CLIENT_REDIS}
+    CLIENT_SECRET: ${env:CLIENT_SECRET}
 
 functions:
   addCharacters:
